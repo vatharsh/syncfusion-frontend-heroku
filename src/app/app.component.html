@@ -1,0 +1,94 @@
+ <div id='loader'>Loading....</div>
+ <div class="tree-grid-toolkit-placeholder" >
+   <button onclick="showChooseDialog()" class="btn btn-primary">Show/Hide Columns</button>
+ </div>
+ <ejs-treegrid #treegrid (actionComplete)="onTreeGridActionComplete($event)"
+ (dataBound)="onTreeGridDataBound($event)" (rowDrop)="onTreeGridRowDrop($event)"
+ (rowSelecting)="onTreeGridRowSelecting($event)" (rowDeselecting)="onTreeGridRowDeslecting($event)"
+ (columnDrop)="onTreeGridColumnDrop($event)" (rowDataBound)="onTreeGridRowDataBound($event)">
+</ejs-treegrid>
+
+  <!-- context-menu-1 container -->
+  <div id="menu-right-click" title="Context Menu">
+        <div id="edit-col" class="context-menu-btn" (click)="openEditDialog()">
+          EditCol
+        </div>
+        <div id="new-Col" class="context-menu-btn" (click)="openAddDialog()">
+          NewCol
+        </div>
+        <div id="del-col" class="context-menu-btn" (click)="deleteHeaderObject()">
+          DelCol
+        </div>
+        <div id="choose-col" class="context-menu-btn" onclick="showChooseDialog()">
+          ChooseCol
+        </div>
+        <div class="context-menu-btn" style="text-align: left;">
+          <input type="checkbox"  id ="freeze-col" name="freezeCol" value="freezeCol" (click)="frozeColumns($event)">
+          <label class="chkBoxLbl" for="freezeCol"> FreezeCol</label>
+        </div>
+        <div class="context-menu-btn" style="text-align: left;">
+          <input type="checkbox"  id ="filter-col" name="filterCol" value="filterCol" onclick="showFilter(this)">
+          <label class="chkBoxLbl" for="filterCol"> FitlerCol</label>
+        </div>
+        <div class="context-menu-btn" style="text-align: left;">
+          <input #multiSort type="checkbox"  id ="multi-sort-col" name="multiSortCol" value="multiSortCol" (click)="enableSortOnColumn($event)">
+          <label class="chkBoxLbl" for="multiSortCol"> MultiSort</label>
+        </div>
+        <!-- <div class="context-menu-btn" style="text-align: left;">
+          <input type="checkbox"  id ="freeze-col" name="freezeCol" value="freezeCol" (click)="disableDragAndDrop($event)">
+          <label class="chkBoxLbl" for="freezeCol"> DisableDragDrop</label>
+        </div> -->
+  </div>
+
+   <!-- context-menu-2 container -->
+   <div id="menu-right-click-row" title="Context Menu">
+    <div id="add-next-row" class="context-menu-btn" (click)="openAddRowNextDialog()">
+      AddNext
+    </div>
+    <div id="add-child-row" class="context-menu-btn" (click)="openAddRowChildDialog()">
+      AddChild
+    </div>
+    <div id="del-row" class="context-menu-btn" (click)="deleteRow()">
+      DelRow
+    </div>
+    <div id="edit-row" class="context-menu-btn" (click)="openEditRowDialog()">
+      EditRow
+    </div>
+    <div class="context-menu-btn" style="text-align: left;">
+      <input type="checkbox"  id ="multiSelect-row" name="MultiSelect" value="MultiSelect" (click)="enableMultiSelect($event)">
+      <label class="chkBoxLbl" for="MultiSelect"> MultiSelect</label>
+    </div>
+    <div id="copy-row" class="context-menu-btn" (click)="copyRow()">
+      CopyRow
+    </div>
+    <div id="cut-row" class="context-menu-btn" (click)="cutRow()">
+      CutRow
+    </div>
+    <div id="paste-next-row" class="context-menu-btn" [ngClass]="{'disabled': currentSelectedRows.length <=0 || mode == null}" (click)="pasteNext()">
+      PasteNext
+    </div>
+    <div id="paste-child-row" class="context-menu-btn" [ngClass]="{'disabled': currentSelectedRows.length <=0 || mode == null}"  (click)="pasteChild()">
+      PasteChild
+    </div>
+</div>
+
+   <!-- context menu choose column container -->
+   <div id="context-menu-choose" title="Choose">
+    <input type="text" class="context-menu-btn" id="choosefilter">
+    <div *ngFor="let col of chooseColumnOptions; let i = index">
+      <input type="checkbox" [attr.id]="'chk-'+col.name" value="{{col.name}}" [checked]="col.isChecked"
+      [(ngModel)]="col.isChecked" (click)="selectAll($event)"/>
+      <label [attr.for]="'chk-'+col.name">{{col.name}}</label>
+    </div>
+    <input id="ok-menu-choose"  type="button" title="Ok" context-val="" value="Ok" (click) ="hideShowSelectedColumns()">
+    <input id="cancel-menu-choose"  type="button" title="Cancel" value="Cancel" onclick="closeModal()">
+  </div>
+
+
+  <input type="hidden" id="current-selected-index">
+  <input type="hidden" id="current-selected-row-index">
+  <input type="hidden" id="current-frozed-index">
+  <input type="hidden" id="current-selected-header-val">
+  <input type="hidden" id="pressure-event-triggered-val">
+  <input type="button" id="trigger-defaults-initial-load-events" onclick="triggerEvents()">
+
