@@ -55,16 +55,16 @@
   max-width: 1400px!important;
 } */
 
-/* .e-grid { */
-  /* overflow-y: hidden!important; */
-    /* overflow-x: scroll!important; */
-    /* width: 1350px!important; */
-/* } */
+.e-grid {
+  overflow-y: hidden!important;
+  overflow-x: scroll!important;
+  width: 1350px!important;
+}
 /* .e-gridcontent e-responsive-header {
   overflow: scroll!important;
       width: 1400px;
-  }
-  
-  .e-headercontent {
+  } */
+
+  /* .e-headercontent {
   overflow: scroll!important;
   } */

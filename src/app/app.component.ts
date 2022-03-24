@@ -218,8 +218,8 @@ export class AppComponent implements OnInit,OnDestroy {
     {
       var colmElem = { field: headers[i].name, headerText: headers[i].name,
         textAlign: headers[i].alignment,
-        width:'80%',
-        // minWidth:headers[i].minColumnWidth,
+        width:'150%',
+        minWidth:headers[i].minColumnWidth,
         customAttributes: headers[i].textWrap == true ? {
           class: "cell-text-wrap" ,
           ['style']: {
@@ -368,7 +368,7 @@ export class AppComponent implements OnInit,OnDestroy {
           this.treegrid.dataSource= this.treeGridData;
           this.treegrid.infiniteScrollSettings= { initialBlocks: 5 };
           this.treegrid.pageSettings= { pageSize: 30 };
-          this.treegrid.height= screen.height;  
+          this.treegrid.height= screen.height;
           setTimeout(() => {
             this.treegrid.height=screen.height-172;
             this.treegrid.hideSpinner();
@@ -548,7 +548,7 @@ export class AppComponent implements OnInit,OnDestroy {
           // console.log('here1');
           this.treegrid.hideSpinner();
         }
-      }else 
+      }else
       {
         // console.log('here2');
         this.treegrid.hideSpinner();
